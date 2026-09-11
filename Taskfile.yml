@@ -1,0 +1,41 @@
+version: '3'
+
+tasks:
+  default:
+    desc: "List all available tasks"
+    aliases: [help]
+    silent: true
+    cmds:
+      - task --list
+
+  start:
+    desc: "Start the FastAPI development container"
+    cmds:
+      - docker compose up --build
+
+  down:
+    desc: "Stop the development container"
+    cmds:
+      - docker compose down
+
+  logs:
+    desc: "Tail backend logs"
+    cmds:
+      - docker compose logs -f backend
+
+  test:
+    desc: "Run backend tests"
+    cmds:
+      - docker compose run --rm backend uv run pytest -v
+
+  clean:
+    desc: "Stop containers and remove unused local images"
+    cmds:
+      - docker compose down --remove-orphans
+      - docker image prune -f
+
+  clean:all:
+    desc: "Stop containers and remove local images and volumes"
+    cmds:
+      - docker compose down --remove-orphans --volumes
+      - docker image prune -af
