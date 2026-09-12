@@ -12,6 +12,7 @@ FlexHEP is a single-page launch-interest site for a collaborative home exercise 
 Run with Docker Compose:
 
 ```bash
+cp .env.example .env
 docker compose up --build
 ```
 
